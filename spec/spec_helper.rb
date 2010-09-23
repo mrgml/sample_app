@@ -1,8 +1,32 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
+require 'rubygems'
+require 'spork'
+
+Spork.prefork do
+  # Loading more in this block will cause your tests to run faster. However, 
+  # if you change any configuration or code from libraries loaded here, you'll
+  # need to restart spork for it take effect.
+  
+  ENV["RAILS_ENV"] ||= 'test'
+  unless defined?(Rails)
+    
+    # This file is copied to ~/spec when you run 'ruby script/generate rspec'
+    # from the project root directory.
+    require File.dirname(__FILE__) + "/../config/environment"
+  end
+  require 'rspec/rails'
+
+
+# --- Instructions ---
+# - Sort through your spec_helper file. Place as much environment loading 
+#   code that you don't normally modify during development in the 
+#   Spork.prefork block.
+# - Place the rest under Spork.each_run block
+# - Any code that is left outside of the blocks will be ran during preforking
+#   and during each_run!
+# - These instructions should self-destruct in 10 seconds.  If they don't,
+#   feel free to delete them.
+#
+
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -24,4 +48,12 @@ RSpec.configure do |config|
   # examples within a transaction, comment the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  
+  ActiveSupport::Dependencies.clear
+end
+end
+
+Spork.each_run do
+  # This code will be run each time you run your specs.
+  
 end

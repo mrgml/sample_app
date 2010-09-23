@@ -30,11 +30,14 @@ gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 # end
 
 group :development do
-	gem 'rspec-rails', '2.0.0.beta.18'
+	gem 'rspec-rails', '2.0.0.beta.19'
 end
 
 group :test do
-	gem 'rspec', '2.0.0.beta.18'
+	gem 'rspec', '2.0.0.beta.19'
+	gem 'spork', '0.8.4'
+	gem 'autotest'
+	gem 'autotest-rails'
 end
 
 
