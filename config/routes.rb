@@ -1,5 +1,9 @@
 SampleApp::Application.routes.draw do
+  get "users/new"
+
 #  get "pages/home"
+
+  match '/signup', :to => 'users#new'
 
   match '/contact', :to => 'pages#contact'
 
@@ -8,6 +12,11 @@ SampleApp::Application.routes.draw do
   match '/help', :to => 'pages#help'
   
   match '/home', :to => 'pages#home'
+  
+#  match '/', :to => 'pages#home'
+
+#  root_path => '/'
+#  root_url => 'http://localhost:3000/'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
